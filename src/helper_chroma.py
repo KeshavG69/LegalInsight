@@ -108,7 +108,7 @@ def questions_web_search(text_list):
 def get_similar_cases_summary(questions):
 
     summary = []
-    web_search_tool = TavilySearchResults(k=3)
+    web_search_tool = TavilySearchResults(k=300)
     template = """
   You are an assistant for question-answering tasks. Use the following pieces of retrieved context to answer the question.Keep the answer concise.\nQuestion: {question} \nContext: {context} \nAnswer:"
 
