@@ -41,7 +41,7 @@ Before running the application, ensure that you have the following installed:
 1.  **Clone the Repository** Clone the LegalInsight repository to your local machine:
 
    ```bash
-git clone https://github.com/yourusername/LegalInsight.git
+git clone https://github.com/KeshavG69/LegalInsight.git
 cd LegalInsight
 ```
 
