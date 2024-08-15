@@ -1,7 +1,7 @@
 import os
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_groq import ChatGroq
-from dotenv import load_dotenv
+
 from langchain_pinecone import PineconeVectorStore
 from pinecone import Pinecone, ServerlessSpec
 from langchain_core.output_parsers import StrOutputParser
@@ -15,7 +15,7 @@ import requests
 import re
 from raptor_helper import *
 
-load_dotenv()
+
 warnings.filterwarnings("ignore")
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 os.environ["PINECONE_API_KEY"] = os.getenv("PINECONE_API_KEY")
@@ -23,11 +23,7 @@ os.environ["LANGCHAIN_TRACING_V2"] = "true"
 os.environ["LANGCHAIN_ENDPOINT"] = "https://api.smith.langchain.com"
 os.environ["LANGCHAIN_API_KEY"] = os.getenv("LANGCHAIN_API_KEY")
 os.environ["TAVILY_API_KEY"] = os.getenv("TAVILY_API_KEY")
-llm = ChatGroq(
-    temperature=0.0,
-    groq_api_key=os.getenv("GROQ_API_KEY"),
-    model_name="llama-3.1-8b-instant",
-)
+
 
 
 def get_summary(docs):
