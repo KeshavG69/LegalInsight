@@ -13,7 +13,7 @@ import numpy as np
 import pandas as pd
 from langchain_huggingface import HuggingFaceEmbeddings
 from sklearn.mixture import GaussianMixture
-from helper import *
+
 load_dotenv()
 
 llm = ChatGroq(
