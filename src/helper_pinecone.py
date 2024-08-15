@@ -1,7 +1,7 @@
 import os
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_groq import ChatGroq
-
+from dotenv import load_dotenv
 from langchain_pinecone import PineconeVectorStore
 from pinecone import Pinecone, ServerlessSpec
 from langchain_core.output_parsers import StrOutputParser
@@ -15,7 +15,7 @@ import requests
 import re
 from raptor_helper import *
 
-
+load_dotenv()
 warnings.filterwarnings("ignore")
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 os.environ["PINECONE_API_KEY"] = os.getenv("PINECONE_API_KEY")
