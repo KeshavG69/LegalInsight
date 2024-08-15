@@ -2,7 +2,7 @@ import streamlit as st
 
 
 import streamlit_ext as ste
-from helper import *
+from helper_chroma import *
 # from raptor import *
 
 print("Refreshing")
@@ -75,7 +75,8 @@ if uploaded_file is not None:
     )
 
     if index_name.strip().lower():
-        retriever = raptor_retriever(document_text, index_name)
+        with st.spinner(f'Opening New Project {index_name}'):
+            retriever = raptor_retriever(document_text, index_name)
         if 'messages' not in st.session_state:
             st.session_state.messages = []
         for message in st.session_state.messages:
