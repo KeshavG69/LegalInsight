@@ -1,6 +1,6 @@
 from langchain_core.prompts import ChatPromptTemplate
 
-
+from dotenv import load_dotenv
 from langchain_core.output_parsers import StrOutputParser
 
 from typing import Dict, List, Optional, Tuple
@@ -14,8 +14,13 @@ import pandas as pd
 from langchain_huggingface import HuggingFaceEmbeddings
 from sklearn.mixture import GaussianMixture
 from helper import *
+load_dotenv()
 
-
+llm = ChatGroq(
+    temperature=0.0,
+    groq_api_key=os.getenv("GROQ_API_KEY"),
+    model_name="llama-3.1-8b-instant",
+)
 embd = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
 ### --- Code from citations referenced above (added comments and docstrings) --- ###
 
