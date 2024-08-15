@@ -69,7 +69,7 @@ if uploaded_file is not None:
         st.write('------------------------------------------------------------------')
         ste.download_button(label="Download Strategy....", data=st.session_state.strategy_text,file_name='strategy.txt')
 
-    st.header("Chat with PDF")
+    st.header("CaseConnect")
     index_name = st.text_input(
         "Enter The Project Name(Always give unique project names)"
     )
