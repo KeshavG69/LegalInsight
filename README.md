@@ -40,30 +40,24 @@ Before running the application, ensure that you have the following installed:
 
 1.  **Clone the Repository** Clone the LegalInsight repository to your local machine:
 
-    bash
+   ```bash
+git clone https://github.com/yourusername/LegalInsight.git
+cd LegalInsight
+```
 
-     
+3.  **Install Dependencies** Install the necessary Python packages by running:
 
-    `git clone https://github.com/yourusername/LegalInsight.git 
-    cd LegalInsight`
-
-2.  **Install Dependencies** Install the necessary Python packages by running:
-
-    bash
-
-     
-
-    `pip install -r requirements.txt`
+    ```bash 
+    pip install -r requirements.txt
+    ```
 
     This will install all required dependencies, including Streamlit, PyPDF2, transformers, and LangChain, among others.
 
-3.  **Run the Streamlit Application** Start the application by executing the following command:
+5.  **Run the Streamlit Application** Start the application by executing the following command:
 
-    bash
-
-     
-
-    `streamlit run app.py`
+    ```bash
+    streamlit run app.py
+    ```
 
     The application will launch in your default web browser. If it doesn't, you can manually open `http://localhost:8501` in your browser.
 
