@@ -44,8 +44,8 @@ Before running the application, ensure that you have the following installed:
 
      
 
-    ```git clone https://github.com/yourusername/LegalInsight.git 
-    cd LegalInsight```
+    `git clone https://github.com/yourusername/LegalInsight.git 
+    cd LegalInsight`
 
 2.  **Install Dependencies** Install the necessary Python packages by running:
 
@@ -53,7 +53,7 @@ Before running the application, ensure that you have the following installed:
 
      
 
-    ```pip install -r requirements.txt```
+    `pip install -r requirements.txt`
 
     This will install all required dependencies, including Streamlit, PyPDF2, transformers, and LangChain, among others.
 
@@ -63,23 +63,23 @@ Before running the application, ensure that you have the following installed:
 
      
 
-    ```streamlit run app.py```
+    `streamlit run app.py`
 
-    The application will launch in your default web browser. If it doesn't, you can manually open ```http://localhost:8501``` in your browser.
+    The application will launch in your default web browser. If it doesn't, you can manually open `http://localhost:8501` in your browser.
 
 ## File Structure
 
 
--   **```app.py```**: The main application script that initializes the Streamlit app and handles the user interface, file uploads, and integration with the helper functions.
--   **```helper.py```**: Contains utility functions for processing PDF documents, generating summaries, retrieving relevant judgments, and preparing strategic insights. These functions are modular, making it easy to extend or customize the application's functionality.
--   **```raptor_helper.py```**: A specialized script that aids in analyzing and comparing legal strategies derived from past judgments and case law. This script is integral to the strategic insights feature.
+-   **`app.py`**: The main application script that initializes the Streamlit app and handles the user interface, file uploads, and integration with the helper functions.
+-   **`helper.py`**: Contains utility functions for processing PDF documents, generating summaries, retrieving relevant judgments, and preparing strategic insights. These functions are modular, making it easy to extend or customize the application's functionality.
+-   **`raptor_helper.py`**: A specialized script that aids in analyzing and comparing legal strategies derived from past judgments and case law. This script is integral to the strategic insights feature.
 
 ## Technical Details
 
 
 ### Natural Language Processing (NLP)
 
-LegalInsight leverages modern NLP techniques to analyze legal texts. The app uses pre-trained language models from the ```transformers``` library, fine-tuned for legal document analysis. These models are capable of understanding complex legal language and extracting relevant information for summaries and strategy generation.
+LegalInsight leverages modern NLP techniques to analyze legal texts. The app uses pre-trained language models from the `transformers` library, fine-tuned for legal document analysis. These models are capable of understanding complex legal language and extracting relevant information for summaries and strategy generation.
 
 ### Streamlit Framework
 
@@ -87,7 +87,7 @@ The application is built using Streamlit, a popular framework for creating data-
 
 ### PDF Processing
 
-LegalInsight uses ```PyPDF2``` to extract text from PDF files. This extracted text is then fed into the NLP pipeline for further analysis.
+LegalInsight uses `PyPDF2` to extract text from PDF files. This extracted text is then fed into the NLP pipeline for further analysis.
 
 ### AI-Powered Strategy Generator
 
@@ -108,7 +108,7 @@ Before submitting a Pull Request, ensure that your code adheres to the project's
 ## License
 
 
-LegalInsight is licensed under the MIT License. You are free to use, modify, and distribute this software in accordance with the terms of the license. For more information, see the ```LICENSE``` file in the repository.
+LegalInsight is licensed under the MIT License. You are free to use, modify, and distribute this software in accordance with the terms of the license. For more information, see the `LICENSE` file in the repository.
 
 ## Contact Information
 
