@@ -42,7 +42,7 @@ Before running the application, ensure that you have the following installed:
 
     bash
 
-    Copy code
+     
 
     `git clone https://github.com/yourusername/LegalInsight.git
     cd LegalInsight`
@@ -51,7 +51,7 @@ Before running the application, ensure that you have the following installed:
 
     bash
 
-    Copy code
+     
 
     `pip install -r requirements.txt`
 
@@ -61,7 +61,7 @@ Before running the application, ensure that you have the following installed:
 
     bash
 
-    Copy code
+     
 
     `streamlit run app.py`
 
@@ -110,7 +110,7 @@ Before submitting a Pull Request, ensure that your code adheres to the project's
 
 LegalInsight is licensed under the MIT License. You are free to use, modify, and distribute this software in accordance with the terms of the license. For more information, see the `LICENSE` file in the repository.
 
-##Contact Information
+## Contact Information
 
 
 For any questions, feedback, or support inquiries, please feel free to reach out:
