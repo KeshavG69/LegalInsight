@@ -1,11 +1,28 @@
+import dotenv
 from langchain_core.prompts import ChatPromptTemplate
-
+from langchain_groq import ChatGroq
 from dotenv import load_dotenv
+from langchain_chroma import Chroma
+import pdfminer.pdftypes
+from pinecone import Pinecone, ServerlessSpec
+import streamlit as st
+
+
+import streamlit_ext as ste
+import time
+import warnings
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+import fitz
+import chromadb
+from langchain_community.tools.tavily_search import TavilySearchResults
+from langchain_core.runnables import RunnablePassthrough, RunnableLambda
+import requests
+import re
 from langchain_core.output_parsers import StrOutputParser
 
 from typing import Dict, List, Optional, Tuple
 
-import streamlit as st
+import os
 import umap
 import umap.umap_ as umap
 
@@ -19,7 +36,7 @@ load_dotenv()
 llm = ChatGroq(
     temperature=0.0,
     groq_api_key=os.getenv("GROQ_API_KEY"),
-    model_name="llama-3.1-8b-instant",
+    model_name="llama-3.1-70b-versatile",
 )
 embd = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
 ### --- Code from citations referenced above (added comments and docstrings) --- ###
