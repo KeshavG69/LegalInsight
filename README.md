@@ -1,10 +1,10 @@
 # LegalInsight: Comprehensive Legal Strategy and Judgment Analysis
-================================================================
+
 
 LegalInsight is an advanced Streamlit web application that simplifies the process of legal document analysis. Designed specifically for legal professionals, researchers, and law students, LegalInsight provides a streamlined workflow to analyze, summarize, and strategize based on legal documents. By uploading a legal document in PDF format, users can automatically generate summaries, find relevant judgments from similar past cases, and receive strategic insights that could guide judicial decisions. Additionally, the app includes a "Chat with PDF" feature, allowing users to interact with the document through a conversational interface.
 
 ## Features Overview
------------------
+
 
 ### PDF Upload
 
@@ -27,7 +27,7 @@ Using advanced AI algorithms, LegalInsight suggests potential strategies and act
 The "Chat with PDF" feature allows users to interactively engage with the content of the uploaded document. Users can ask questions and receive answers directly related to the document, making it easier to delve into specific details and clarifications.
 
 Installation Instructions
--------------------------
+
 
 ### Prerequisites
 
@@ -67,15 +67,15 @@ Before running the application, ensure that you have the following installed:
 
     The application will launch in your default web browser. If it doesn't, you can manually open `http://localhost:8501` in your browser.
 
-File Structure
---------------
+## File Structure
+
 
 -   **`app.py`**: The main application script that initializes the Streamlit app and handles the user interface, file uploads, and integration with the helper functions.
 -   **`helper.py`**: Contains utility functions for processing PDF documents, generating summaries, retrieving relevant judgments, and preparing strategic insights. These functions are modular, making it easy to extend or customize the application's functionality.
 -   **`raptor_helper.py`**: A specialized script that aids in analyzing and comparing legal strategies derived from past judgments and case law. This script is integral to the strategic insights feature.
 
-Technical Details
------------------
+## Technical Details
+
 
 ### Natural Language Processing (NLP)
 
@@ -93,8 +93,8 @@ LegalInsight uses `PyPDF2` to extract text from PDF files. This extracted text
 
 The strategic insights feature is powered by AI algorithms that analyze the context and content of legal documents. By comparing the current case with past judgments, the app suggests potential strategies that might influence judicial decisions.
 
-Contribution Guidelines
------------------------
+## Contribution Guidelines
+
 
 LegalInsight is an open-source project, and contributions are highly encouraged. If you wish to contribute, please follow these steps:
 
@@ -105,13 +105,13 @@ LegalInsight is an open-source project, and contributions are highly encouraged.
 
 Before submitting a Pull Request, ensure that your code adheres to the project's coding standards and that all tests pass.
 
-License
--------
+## License
+
 
 LegalInsight is licensed under the MIT License. You are free to use, modify, and distribute this software in accordance with the terms of the license. For more information, see the `LICENSE` file in the repository.
 
-Contact Information
--------------------
+##Contact Information
+
 
 For any questions, feedback, or support inquiries, please feel free to reach out:
 
