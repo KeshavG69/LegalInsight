@@ -1,0 +1,14 @@
+langchain
+streamlit
+umap
+umap-learn
+numpy
+pandas
+langchain-huggingface
+scikit-learn
+langchain-groq
+python-dotenv
+langchain-pinecone
+pymupdf
+langchain-community
+requests
