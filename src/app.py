@@ -1,11 +1,7 @@
-import streamlit as st
 
-
-import streamlit_ext as ste
 from helper_chroma import *
-# from raptor import *
 
-print("Refreshing")
+
 
 
 st.set_page_config(layout="wide")
@@ -35,22 +31,21 @@ if uploaded_file is not None:
         if 'judgment_text' not in st.session_state:
             st.session_state.judgment_text=''
 
-            link='https://indiankanoon.org/search/?formInput=Murder+doctypes:judgments'
-            print(link)
-            questions=questions_web_search(scrape_jina_ai(link))[:1]
+
+            questions=questions_web_search(scrape_jina_ai(get_link(document_text))
 
             for i,q in enumerate(questions):
 
                 st.markdown(f'### Past Case Number: {i+1}')
                 st.session_state.judgment_text+=f'### Past Case Number: {i+1}'
-                print('hello')
+
                 st.session_state.judgment_text+=(st.write_stream(get_similar_cases_summary(q)))
-                print('hello1')
+                
                 st.write('------------------------------------------------------------------')
                 st.session_state.judgment_text+='------------------------------------------------------------------'
-                print('hello2')
+                
                 st.session_state.judgment_text+=('\n\n\n')
-                print('hello3')
+               
 
         else:
 
