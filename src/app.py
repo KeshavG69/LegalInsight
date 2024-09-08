@@ -1,7 +1,7 @@
+from helper import *
 
-from helper_chroma import *
 
-
+print("Refreshing")
 
 
 st.set_page_config(layout="wide")
@@ -31,21 +31,22 @@ if uploaded_file is not None:
         if 'judgment_text' not in st.session_state:
             st.session_state.judgment_text=''
 
-
-            questions=questions_web_search(scrape_jina_ai(get_link(document_text))
-
-            for i,q in enumerate(questions):
+            link='https://indiankanoon.org/search/?formInput=Murder+doctypes:judgments'
+            print(link)
+            past_judgement_links=past_judgement_link(scrape_jina_ai(link))[:1]
+            print(past_judgement_links)
+            for i,q in enumerate(past_judgement_links):
 
                 st.markdown(f'### Past Case Number: {i+1}')
                 st.session_state.judgment_text+=f'### Past Case Number: {i+1}'
-
+                print('hello')
                 st.session_state.judgment_text+=(st.write_stream(get_similar_cases_summary(q)))
-                
+                print('hello1')
                 st.write('------------------------------------------------------------------')
                 st.session_state.judgment_text+='------------------------------------------------------------------'
-                
+                print('hello2')
                 st.session_state.judgment_text+=('\n\n\n')
-               
+                print('hello3')
 
         else:
 
@@ -64,14 +65,14 @@ if uploaded_file is not None:
         st.write('------------------------------------------------------------------')
         ste.download_button(label="Download Strategy....", data=st.session_state.strategy_text,file_name='strategy.txt')
 
-    st.header("CaseConnect")
+    st.header("Chat with PDF")
     index_name = st.text_input(
         "Enter The Project Name(Always give unique project names)"
-    )
+    ).strip().lower()
 
-    if index_name.strip().lower():
+    if index_name:
         with st.spinner(f'Opening New Project {index_name}'):
-            retriever = raptor_retriever(document_text, index_name)
+            retriever = raptor_retriever_pinecone(document_text, index_name)
         if 'messages' not in st.session_state:
             st.session_state.messages = []
         for message in st.session_state.messages:
