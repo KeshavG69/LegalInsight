@@ -15,3 +15,4 @@ requests
 langchain-groq
 langchain-chroma
 protobuf==3.20.*
+pysqlite3-binary
