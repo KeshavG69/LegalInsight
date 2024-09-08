@@ -14,5 +14,5 @@ langchain-community
 requests
 langchain-groq
 langchain-chroma
-
+protoc >= 3.19.0.
 pysqlite3-binary
