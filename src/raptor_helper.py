@@ -1,12 +1,13 @@
 import dotenv
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_groq import ChatGroq
+from langchain_together import ChatTogether
 from dotenv import load_dotenv
 from langchain_chroma import Chroma
 import pdfminer.pdftypes
 from pinecone import Pinecone, ServerlessSpec
 import streamlit as st
-
+from langchain_pinecone import PineconeVectorStore
 
 import streamlit_ext as ste
 import time
@@ -33,10 +34,11 @@ from sklearn.mixture import GaussianMixture
 
 load_dotenv()
 
-llm = ChatGroq(
-    temperature=0.0,
-    groq_api_key=os.getenv("GROQ_API_KEY"),
-    model_name="llama-3.1-70b-versatile",
+llm = ChatTogether(
+    model="meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo",
+    temperature=0,
+    api_key=st.secrets["TOGETHER_API_KEY"],
+    streaming=True,
 )
 embd = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
 ### --- Code from citations referenced above (added comments and docstrings) --- ###
