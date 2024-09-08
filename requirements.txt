@@ -12,3 +12,4 @@ langchain-pinecone
 pymupdf
 langchain-community
 requests
+langchain-groq
