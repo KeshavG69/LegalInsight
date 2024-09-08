@@ -16,3 +16,4 @@ langchain-groq
 langchain-chroma
 
 pysqlite3-binary
+protobuf==3.19
