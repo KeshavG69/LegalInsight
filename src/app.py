@@ -42,7 +42,7 @@ if uploaded_file is not None:
                 "https://indiankanoon.org/search/?formInput=Murder+doctypes:judgments"
             )
 
-            past_judgement_links = past_judgement_link(scrape_jina_ai(link))
+            past_judgement_links = past_judgement_link(scrape_jina_ai(link))[:1]
 
             for i, q in enumerate(past_judgement_links):
 
