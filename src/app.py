@@ -56,9 +56,7 @@ if uploaded_file is not None:
                 st.write(
                     "------------------------------------------------------------------"
                 )
-                st.session_state.judgment_text += (
-                    "------------------------------------------------------------------"
-                )
+                
 
                 st.session_state.judgment_text += "\n\n\n"
 
