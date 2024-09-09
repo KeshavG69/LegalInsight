@@ -10,7 +10,7 @@ from helper import *
 
 st.set_page_config(layout="wide")
 
-st.title("Legal Document Assistant")
+st.title("Legal Insight")
 
 uploaded_file = ste.file_uploader("Choose a PDF file", type="pdf")
 
@@ -87,7 +87,7 @@ if uploaded_file is not None:
             file_name="strategy.txt",
         )
 
-    st.header("Chat with PDF")
+    st.header("Chat with Legal Document")
     index_name = (
         st.text_input("Enter The Project Name(Always give unique project names)")
         .strip()
