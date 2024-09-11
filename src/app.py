@@ -89,7 +89,7 @@ if uploaded_file is not None:
 
     st.header("Chat with Legal Document")
     index_name = (
-        st.text_input("Enter The Project Name(Always give unique project names)")
+        st.text_input("Enter The Project Name(Use a new project name if you want to chat about new document)")
         .strip()
         .lower()
     )
