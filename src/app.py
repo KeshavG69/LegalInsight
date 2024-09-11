@@ -38,11 +38,11 @@ if uploaded_file is not None:
         if "judgment_text" not in st.session_state:
             st.session_state.judgment_text = ""
 
-            link = (
-                "https://indiankanoon.org/search/?formInput=Murder+doctypes:judgments"
-            )
+            
 
-            past_judgement_links = past_judgement_link(scrape_jina_ai(link))
+            past_judgement_links = past_judgement_link(
+                scrape_jina_ai(get_link(document_text))
+            )
 
             for i, q in enumerate(past_judgement_links):
 
