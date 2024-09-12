@@ -187,6 +187,7 @@ def get_similar_cases_summary(judgement_link):
    - Related Documents
 
 Ensure the summary is clear, accurate, and includes all critical information based on the provided details of the past legal document.
+Dont give any links at all
   """
     prompt = ChatPromptTemplate.from_template(template)
 
@@ -194,6 +195,12 @@ Ensure the summary is clear, accurate, and includes all critical information bas
 
     response = requests.get(judgement_link)
     docs = response.text
+    token_length = count_tokens(docs)
+    if token_length > 131000:
+        yield (
+            "Document too long. Please refer to the original document at: "
+            + judgement_link
+        )
 
     for chunk in rag_chain.stream({"context": docs}):
 
@@ -353,6 +360,7 @@ def raptor(retriever, question: str):
    You are an assistant for question-answering tasks. Use the following context to answer the question. If the context does not provide the answer and you are confident about it, you may ignore the context.
 
     If the answer is not clear from the context and you are unsure yourself, do not attempt to answer. If you need to go in-depth to answer the question, provide a detailed response.
+    Do not provide an answer if the context does not provide the answer. 
 
     Question: {question}
 
@@ -433,3 +441,14 @@ def raptor_retriever_pinecone(docs_text: str, index_name: str):
 
     retriever = vectorstore.as_retriever(search_kwargs={"k": 5})
     return retriever
+
+
+def count_tokens(text, model="gpt-4"):
+    # Initialize the tokenizer for the given model
+    enc = tiktoken.encoding_for_model(model)
+
+    # Tokenize the text
+    tokens = enc.encode(text)
+
+    # Return the number of tokens
+    return len(tokens)
