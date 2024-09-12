@@ -45,8 +45,9 @@ if uploaded_file is not None:
 
                 st.markdown(f"### Past Case Number: {i+1}")
                 st.session_state.judgment_text += f"### Past Case Number: {i+1}"
-                st.markdown(f"### Doc Link: {q}")
-                st.session_state.judgment_text +=f"### Doc Link: {q}"
+                url = q.replace("https://r.jina.ai/", "")
+                st.markdown(f"### Doc Link: {url}")
+                st.session_state.judgment_text +=f"### Doc Link: {url}"
                 st.session_state.judgment_text += st.write_stream(
                     get_similar_cases_summary(q)
                 )
