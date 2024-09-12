@@ -8,7 +8,7 @@ import pdfminer.pdftypes
 from pinecone import Pinecone, ServerlessSpec
 import streamlit as st
 from langchain_pinecone import PineconeVectorStore
-
+import tiktoken
 import streamlit_ext as ste
 import time
 import warnings
