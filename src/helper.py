@@ -201,6 +201,7 @@ Dont give any links at all
             "Document too long. Please refer to the original document at: "
             + judgement_link
         )
+        return
 
     for chunk in rag_chain.stream({"context": docs}):
 
