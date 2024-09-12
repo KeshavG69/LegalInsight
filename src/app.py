@@ -7,10 +7,9 @@ sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 from helper import *
 
 
-
 st.set_page_config(layout="wide")
 
-st.title("Legal Insight")
+st.title("Legal Document Assistant")
 
 uploaded_file = ste.file_uploader("Choose a PDF file", type="pdf")
 
@@ -38,8 +37,6 @@ if uploaded_file is not None:
         if "judgment_text" not in st.session_state:
             st.session_state.judgment_text = ""
 
-            
-
             past_judgement_links = past_judgement_link(
                 scrape_jina_ai(get_link(document_text))
             )
@@ -48,7 +45,8 @@ if uploaded_file is not None:
 
                 st.markdown(f"### Past Case Number: {i+1}")
                 st.session_state.judgment_text += f"### Past Case Number: {i+1}"
-
+                st.markdown(f"### Doc Link: {q}")
+                st.session_state.judgment_text +=f"### Doc Link: {q}"
                 st.session_state.judgment_text += st.write_stream(
                     get_similar_cases_summary(q)
                 )
@@ -56,7 +54,9 @@ if uploaded_file is not None:
                 st.write(
                     "------------------------------------------------------------------"
                 )
-                
+                st.session_state.judgment_text += (
+                    "------------------------------------------------------------------"
+                )
 
                 st.session_state.judgment_text += "\n\n\n"
 
@@ -87,16 +87,16 @@ if uploaded_file is not None:
             file_name="strategy.txt",
         )
 
-    st.header("Chat with Legal Document")
+    st.header("Chat with PDF")
     index_name = (
-        st.text_input("Enter The Project Name (Use a new project name if you want to chat about new document)")
+        st.text_input("Enter The Project Name(Always give unique project names)")
         .strip()
         .lower()
     )
 
     if index_name:
         with st.spinner(f"Opening New Project {index_name}"):
-            retriever = raptor_retriever_pinecone(document_text, index_name)
+            retriever = raptor_retriever(document_text, index_name)
         if "messages" not in st.session_state:
             st.session_state.messages = []
         for message in st.session_state.messages:
@@ -112,3 +112,4 @@ if uploaded_file is not None:
                 response = st.write_stream(raptor(retriever, user_question))
 
             st.session_state.messages.append({"role": "assistant", "content": response})
+
