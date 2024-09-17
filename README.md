@@ -3,7 +3,11 @@
 
 LegalInsight is an advanced Streamlit web application that simplifies the process of legal document analysis. Designed specifically for legal professionals, researchers, and law students, LegalInsight provides a streamlined workflow to analyze, summarize, and strategize based on legal documents. By uploading a legal document in PDF format, users can automatically generate summaries, find relevant judgments from similar past cases, and receive strategic insights that could guide judicial decisions. Additionally, the app includes a "Chat with PDF" feature, allowing users to interact with the document through a conversational interface
 
-[![Watch the video](https://img.youtube.com/vi/Nq-8GHWqFsQ/maxresdefault.jpg)](https://www.youtube.com/watch?v=Nq-8GHWqFsQ)
+
+
+
+https://github.com/user-attachments/assets/9982ad66-a3b0-4442-bf8f-aa425f1fc160
+
 
 
 
