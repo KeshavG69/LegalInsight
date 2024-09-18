@@ -36,18 +36,20 @@ if uploaded_file is not None:
         st.header("Previous Similar Judgments")
         if "judgment_text" not in st.session_state:
             st.session_state.judgment_text = ""
-
-            past_judgement_links = past_judgement_link(
-                scrape_jina_ai(get_link(document_text))
-            )
-
+            indian_kanoon_text = scrape_jina_ai(get_link(document_text))
+            past_judgement_links = past_judgement_link(indian_kanoon_text)
+            past_judgement_heading = get_past_judgement_heading(indian_kanoon_text)
             for i, q in enumerate(past_judgement_links):
 
                 st.markdown(f"### Past Case Number: {i+1}")
                 st.session_state.judgment_text += f"### Past Case Number: {i+1}"
+                st.markdown(f"### Case Heading: {past_judgement_heading[i]}")
+                st.session_state.judgment_text += (
+                    f"### Case Heading: {past_judgement_heading[i]}"
+                )
                 url = q.replace("https://r.jina.ai/", "")
                 st.markdown(f"### Doc Link: {url}")
-                st.session_state.judgment_text +=f"### Doc Link: {url}"
+                st.session_state.judgment_text += f"### Doc Link: {url}"
                 st.session_state.judgment_text += st.write_stream(
                     get_similar_cases_summary(q)
                 )
@@ -113,4 +115,3 @@ if uploaded_file is not None:
                 response = st.write_stream(raptor(retriever, user_question))
 
             st.session_state.messages.append({"role": "assistant", "content": response})
-
