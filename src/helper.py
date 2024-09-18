@@ -106,18 +106,15 @@ def get_link(docs):
 
 
 def scrape_jina_ai(url: str) -> str:
-    """
-    Scrapes the content from the provided Jina AI URL.
-
-    Args:
-        url (str): The URL to scrape content from.
-
-    Returns:
-        str: The scraped content split into substrings separated by two newline characters.
-    """
 
     response = requests.get("https://r.jina.ai/" + url)
     return response.text
+
+
+def get_past_judgement_heading(text_list):
+    pattern = r"\[(.*?vs.*?on\s+\d{1,2}\s+\w+,\s+\d{4})\]"
+    headings = re.findall(pattern, text_list)
+    return headings
 
 
 def past_judgement_link(text_list):
@@ -198,11 +195,9 @@ Dont give any links at all
     token_length = count_tokens(docs)
     if token_length > 131000:
         yield (
-            "Document too long. Please refer to the original document at: "
-            + judgement_link
+            "Document too long. Please refer to the original document at the above link "
         )
-        return
-
+        return  
     for chunk in rag_chain.stream({"context": docs}):
 
         yield chunk
