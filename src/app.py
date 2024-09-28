@@ -39,7 +39,7 @@ if uploaded_file is not None:
             indian_kanoon_text = scrape_jina_ai(get_link(document_text))
             past_judgement_links = past_judgement_link(indian_kanoon_text)
             past_judgement_heading = get_past_judgement_heading(indian_kanoon_text)
-            for i, q in enumerate(past_judgement_links[:1]):
+            for i, q in enumerate(past_judgement_links):
 
                 st.markdown(f"### Past Case Number: {i+1}")
                 st.session_state.judgment_text += f"### Past Case Number: {i+1}"
