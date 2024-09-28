@@ -184,6 +184,7 @@ def get_similar_cases_summary(judgement_link):
    - Related Documents
 
 Ensure the summary is clear, accurate, and includes all critical information based on the provided details of the past legal document.
+Keep the summary brief
 Dont give any links at all
   """
     prompt = ChatPromptTemplate.from_template(template)
