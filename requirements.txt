@@ -296,3 +296,5 @@ XlsxWriter==3.2.0
 yarl==1.9.4
 youtube-transcript-api==0.6.2
 zipp==3.19.0
+pysqlite3-binary
+protobuf==3.20.3
