@@ -22,7 +22,7 @@ if uploaded_file is not None:
         st.header("Document Summary")
         if "summary_text" not in st.session_state:
             st.session_state.summary_text = st.write_stream(
-                get_summary(document_text, llm)
+                get_summary(document_text, local_llm)
             )
         else:
             st.write(st.session_state.summary_text)
@@ -90,7 +90,7 @@ if uploaded_file is not None:
         st.header("Strategy")
         if "strategy_text" not in st.session_state:
             st.session_state.strategy_text = st.write_stream(
-                strategy(document_text, llm)
+                strategy(document_text, local_llm)
             )
         else:
             st.write(st.session_state.strategy_text)
