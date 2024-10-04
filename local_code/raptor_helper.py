@@ -1,5 +1,5 @@
 from langchain_core.prompts import ChatPromptTemplate
-
+from dotenv import load_dotenv
 from langchain_together import ChatTogether
 import subprocess
 from langchain_chroma import Chroma
@@ -32,11 +32,11 @@ from langchain_huggingface import HuggingFaceEmbeddings
 from sklearn.mixture import GaussianMixture
 
 
-
+load_dotenv()
 llm = ChatTogether(
     model="meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo",
     temperature=0,
-    api_key=st.secrets["TOGETHER_API_KEY"],
+    api_key=os.getenv("TOGETHER_API_KEY"),
     streaming=True,
 )
 
