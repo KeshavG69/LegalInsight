@@ -32,7 +32,7 @@ import pandas as pd
 from langchain_huggingface import HuggingFaceEmbeddings
 from sklearn.mixture import GaussianMixture
 
-load_dotenv()
+
 
 llm = ChatTogether(
     model="meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo",
