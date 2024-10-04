@@ -41,7 +41,7 @@ LegalInsight now supports running processes locally to maintain privacy. Users c
    Clone the LegalInsight repository to your local machine:
    ```bash
    git clone https://github.com/KeshavG69/LegalInsight.git
-   cd LegalInsight/local_code
+  
    ```
 
 2. **Install Dependencies**
@@ -56,6 +56,7 @@ LegalInsight now supports running processes locally to maintain privacy. Users c
 4. **Run the Streamlit Application Locally**
    Run the application locally by executing:
    ```bash
+   cd LegalInsight/local_code
    streamlit run app.py
    ```
 
