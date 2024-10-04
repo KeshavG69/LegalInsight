@@ -4,9 +4,7 @@
 LegalInsight is an advanced Streamlit web application designed to simplify legal document analysis for professionals, researchers, and students. By uploading a legal document in PDF format, users can generate summaries, retrieve relevant past judgments, and receive strategic insights to guide judicial decisions. The app also includes a "Chat with PDF" feature that allows users to interact with the document through a conversational interface.
 
 
-
 https://github.com/user-attachments/assets/9982ad66-a3b0-4442-bf8f-aa425f1fc160
-
 
 ## Features Overview
 
@@ -34,6 +32,7 @@ LegalInsight now supports running processes locally to maintain privacy. Users c
 - Python 3.7 or higher
 - pip (Python package installer)
 - Ollama (optional, for local use)
+- Together API Key (for using external APIs)
 
 ### Step-by-Step Installation for Local Use
 
@@ -41,22 +40,30 @@ LegalInsight now supports running processes locally to maintain privacy. Users c
    Clone the LegalInsight repository to your local machine:
    ```bash
    git clone https://github.com/KeshavG69/LegalInsight.git
-  
+   cd LegalInsight/local_code
    ```
 
 2. **Install Dependencies**
-   Install the required Python packages:
+   Go back to the root folder and install the required Python packages:
    ```bash
+   cd ..
    pip install -r requirements.txt
    ```
 
 3. **Download and Set Up Ollama (for Local Use)**
    If you want to run LegalInsight with local LLM models, download and install [Ollama](https://ollama.com/download).
 
-4. **Run the Streamlit Application Locally**
+4. **Create a `.env` File**
+   Create a `.env` file in the `local_code` directory and add your Together API key:
+   ```
+   TOGETHER_API_KEY=your_together_api_key_here
+   ```
+   This key is necessary for using external APIs to retrieve additional information or for document analysis.
+
+5. **Run the Streamlit Application Locally**
    Run the application locally by executing:
    ```bash
-   cd LegalInsight/local_code
+   cd local_code
    streamlit run app.py
    ```
 
@@ -68,7 +75,8 @@ If you just want to test the app without setting it up locally, you can access i
 ## File Structure
 
 - **`src/`**: This folder hosts the code for the online demo of LegalInsight. **You do not need to interact with this folder** unless you are the maintainer hosting the web version.
-- **`local_code/`**: Contains scripts and dependencies for running LegalInsight entirely locally, ensuring privacy and local processing. This is the folder users should use for running the app on their local machine.
+- **`local_code/`**: Contains scripts for running LegalInsight entirely locally, ensuring privacy and local processing. This is the folder users should use for running the app on their local machine.
+- **`requirements.txt`**: Located in the root directory, this file contains all the required dependencies for running the application.
 
 ## Technical Details
 
@@ -107,5 +115,16 @@ For questions, feedback, or support inquiries, feel free to reach out:
 - **LinkedIn**: [Keshav Garg](https://www.linkedin.com/in/keshav-garg-7760b1232/)
 
 We look forward to your contributions and hope LegalInsight becomes an invaluable tool in your legal research and practice.
+
+
+
+
+
+
+
+
+
+
+
 
 
