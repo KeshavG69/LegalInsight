@@ -13,8 +13,7 @@ uploaded_file = ste.file_uploader("Choose a PDF file", type="pdf")
 
 if uploaded_file is not None:
     document_text, link_text = extract_text_from_pdf(uploaded_file)
-    print(link_text)
-    print(type(link_text))
+    
 
     col1, col2, col3 = st.columns(3)
 
@@ -39,15 +38,15 @@ if uploaded_file is not None:
         if "judgment_text" not in st.session_state:
             st.session_state.judgment_text = ""
             link=get_link(link_text,local_llm_json)
-            print(link)
+            
             indian_kanoon_text = scrape_jina_ai(link)
             
 
             past_judgement_links = past_judgement_link(indian_kanoon_text)
-            print(past_judgement_links)
+            
 
             past_judgement_heading = get_past_judgement_heading(indian_kanoon_text)
-            print(past_judgement_heading)
+            
             for i, q in enumerate(past_judgement_links):
 
                 st.markdown(f"### Past Case Number: {i+1}")
