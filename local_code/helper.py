@@ -247,10 +247,10 @@ def strategy(docs, llm):
 
     """
 
-    system = """
-   
-
-
+    template = """
+    <chargesheet>
+        Chargesheet:
+    {docs}
 **Based on the following chargesheet details, generate a comprehensive legal strategy for the lawyer to apply in court. Ensure the strategy is practical, aligned with legal principles, and tailored to the specifics provided. Follow the structure below:**
 
 ---
@@ -311,8 +311,8 @@ The prosecution will rely on robust evidence, including witness accounts and for
 
    """
 
-    human = "{docs}"
-    prompt = ChatPromptTemplate.from_messages([("system", system), ("human", human)])
+    
+    prompt = ChatPromptTemplate.from_template(template)
 
     strategy_chain = prompt | llm | StrOutputParser()
     for chunk in strategy_chain.stream({"docs": docs}):
