@@ -1,8 +1,6 @@
 from raptor_helper import *
 
 
-
-
 warnings.filterwarnings("ignore")
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
@@ -67,17 +65,21 @@ def get_summary(docs, llm):
     prompt = ChatPromptTemplate.from_messages([("system", system), ("human", human)])
 
     summary_chain = prompt | llm | StrOutputParser()
-    
+
     for chunk in summary_chain.stream({"docs": docs}):
         yield chunk
 
 
-def get_link(docs, llm):
+def get_link(docs,llm):
     """
     find the one major crime of the document and return the link to the relevant case of indiankanoon.org
 
     """
     template = """
+    <chargesheet>
+        Chargesheet:
+    {docs}
+    </chargesheet>
     You are a legal document classification assistant. Analyze the given legal document and identify which crime(s) from the following list it most likely pertains to:
 
     - Terrorism
@@ -137,18 +139,18 @@ def get_link(docs, llm):
     - Piracy (Intellectual Property)
     - Instigation
 
-    Classify the document based on the described crime(s). If multiple crimes are present, identify all relevant crimes. If the document does not fit any listed crimes, respond with 'Unclassified'."
+    Classify the document based on the described crime
 
 
     Return your answer in JSON format with a single key 'crime' and the value being the identified most significant crime.
 
     Example output:
     jsonCopy{{
-    'crime': 'human trafficking'
+    'crime': 'any crime'
     }}
     Important notes:
 
-    Always return only the single most significant crime, even if multiple serious crimes are mentioned.
+    
    
     Give the extremely significant crime in the context of the legal document, not just as a standalone term.
     
@@ -156,24 +158,21 @@ def get_link(docs, llm):
     Ensure your response is always in valid JSON format.
     Always give a value to the 'crime' key in the JSON output.
     Use single quotes for JSON keys and string values.
-    Return the most signficant crime not less significant
-    you cant give unclassified as an answer
-    You have to give a answer
+    
+    
     Now, analyze the following legal document and extract the single most significant crime:
+    
 
-    Chargesheet:
-    {docs}
     """
 
     prompt = ChatPromptTemplate.from_template(template)
 
     link_chain = prompt | llm | JsonOutputParser()
     out = link_chain.invoke({"docs": docs})
-    print(out)
+   
 
     link = f"https://r.jina.ai/https://indiankanoon.org/search/?formInput={out['crime']}+doctypes:judgments"
     return link
-   
 
 
 def scrape_jina_ai(url: str) -> str:
@@ -229,7 +228,7 @@ def get_similar_cases_summary(judgement_link, llm):
     sum_chain = prompt | llm | StrOutputParser()
 
     response = requests.get(judgement_link)
-    docs = response.text[:30000]
+    docs = response.text
     token_length = count_tokens(docs)
     if token_length > 131000:
         yield (
@@ -333,7 +332,7 @@ def extract_text_from_pdf(pdf_file):
     for page_num in range(len(pdf_document)):
         page = pdf_document.load_page(page_num)
         text += page.get_text()
-    return text, pdf_document
+    return text
 
 
 def raptor_retriever(docs_text: str, index_name: str):
