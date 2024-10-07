@@ -43,7 +43,7 @@ LegalInsight now supports running processes locally to maintain privacy. Users c
    cd LegalInsight/local_code
    ```
 
-**Activate virtual environment:**
+   **Activate virtual environment:**
    ```bash
    python3 -m venv virtual
    ```
@@ -52,14 +52,9 @@ LegalInsight now supports running processes locally to maintain privacy. Users c
    source virtual/bin/activate
    ```
 
-   or for Windows-based machines -
+      or for Windows-based machines -
    ```bash
    .\virtual\Scripts\activate
-   ```
-
-**Install the required packages:**
-   ```bash
-   pip install -r requirements.txt
    ```
 
 2. **Install Dependencies**
