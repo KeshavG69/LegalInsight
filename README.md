@@ -43,6 +43,25 @@ LegalInsight now supports running processes locally to maintain privacy. Users c
    cd LegalInsight/local_code
    ```
 
+**Activate virtual environment:**
+   ```bash
+   python3 -m venv virtual
+   ```
+
+   ```bash
+   source virtual/bin/activate
+   ```
+
+   or for Windows-based machines -
+   ```bash
+   .\virtual\Scripts\activate
+   ```
+
+**Install the required packages:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
 2. **Install Dependencies**
    Go back to the root folder and install the required Python packages:
    ```bash
