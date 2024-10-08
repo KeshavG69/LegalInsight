@@ -62,7 +62,7 @@ LegalInsight now supports running processes locally to maintain privacy. Users c
 
 
    You can install Tesseract and Poppler using Homebrew with the following command:
-   
+   ### MacOS
    ```bash
    brew install tesseract poppler
    ```
