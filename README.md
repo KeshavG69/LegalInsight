@@ -76,7 +76,7 @@ LegalInsight now supports running processes locally to maintain privacy. Users c
    ```
 
 
-   Go back to the root folder and install the required Python packages:
+   Install the required Python packages:
    ```bash
    
    pip install -r requirements.txt
