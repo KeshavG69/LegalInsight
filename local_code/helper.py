@@ -1,6 +1,7 @@
 from raptor_helper import *
 
 
+
 warnings.filterwarnings("ignore")
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
@@ -10,8 +11,11 @@ def get_summary(docs, llm):
     this gives the summary of the legal document.
     """
 
-    system = """
-
+    template = """
+<chargesheet>
+    Chargesheet:
+{docs}
+</chargesheet>
 
 **Summarize the provided chargesheet details concisely, following this structure:**
 
@@ -61,8 +65,9 @@ def get_summary(docs, llm):
 
     """
 
-    human = "{docs}"
-    prompt = ChatPromptTemplate.from_messages([("system", system), ("human", human)])
+    
+    prompt = ChatPromptTemplate.from_template(template)
+
 
     summary_chain = prompt | llm | StrOutputParser()
 
@@ -207,6 +212,10 @@ def get_similar_cases_summary(judgement_link, llm):
     """
 
     template = """
+    <chargesheet>
+        Chargesheet:
+    {docs}
+    </chargesheet>
     Given the details of the legal document, provide a concise 3-4 line summary with the following format:
 
     ##### Outcome
@@ -216,8 +225,7 @@ def get_similar_cases_summary(judgement_link, llm):
     [Briefly mention the primary legal reason for the outcome]
 
     Include only the outcome and its reasoning, without additional details.
-    \n\n\n Legal Document : {context}\n\n\n
-
+    
 
     The reasoning and outcome should not be more than 3-4 lines
 
@@ -235,7 +243,7 @@ def get_similar_cases_summary(judgement_link, llm):
             "Document too long. Please refer to the original document at the above link "
         )
         return
-    for chunk in sum_chain.stream({"context": docs}):
+    for chunk in sum_chain.stream({"docs": docs}):
 
         yield chunk
 
@@ -321,18 +329,33 @@ The prosecution will rely on robust evidence, including witness accounts and for
 
 
 def extract_text_from_pdf(pdf_file):
-    """
-    Extracts the text from a given PDF file.
-
-
-    """
-
-    text = ""
+    # Open the PDF file
     pdf_document = fitz.open(stream=pdf_file.read(), filetype="pdf")
+    extracted_text = ""
+
+    # Iterate through PDF pages
     for page_num in range(len(pdf_document)):
         page = pdf_document.load_page(page_num)
-        text += page.get_text()
-    return text
+        text = page.get_text("text")  # Extract text from page
+
+        # If text is found, append it to the result
+        if text.strip():
+            extracted_text += f"{text}\n"
+
+        # If no text is found, assume it might be an image and use OCR
+        else:
+            
+            pix = page.get_pixmap()  # Render page as an image
+            
+            # Convert Pixmap to PIL Image
+            img_data = pix.tobytes("png")  # Get PNG bytes
+            image = Image.open(io.BytesIO(img_data))  # Create a PIL Image
+            
+            # Perform OCR on the image
+            ocr_text = pytesseract.image_to_string(image)
+            extracted_text += f"{ocr_text}\n"
+    
+    return extracted_text
 
 
 def raptor_retriever(docs_text: str, index_name: str):
@@ -390,15 +413,16 @@ def raptor(retriever, llm, question: str):
     """
 
     template = """
-   You are an assistant for question-answering tasks. Use the following context to answer the question. If the context does not provide the answer and you are confident about it, you may ignore the context.
-
-    If the answer is not clear from the context and you are unsure yourself, do not attempt to answer. If you need to go in-depth to answer the question, provide a detailed response.
-    Do not provide an answer if the context does not provide the answer. 
+   
 
     Question: {question}
 
     Context: {context}
+    You are an assistant for question-answering tasks. Use the following context to answer the question. If the context does not provide the answer and you are confident about it, you may ignore the context.
 
+    If the answer is not clear from the context and you are unsure yourself, do not attempt to answer. If you need to go in-depth to answer the question, provide a detailed response.
+    Do not provide an answer if the context does not provide the answer. 
+    Give a detailed answer if required
     Answer:
     """
     prompt = ChatPromptTemplate.from_template(template)
