@@ -58,23 +58,41 @@ LegalInsight now supports running processes locally to maintain privacy. Users c
    ```
 
 2. **Install Dependencies**
+
+
+
+   You can install Tesseract and Poppler using Homebrew with the following command:
+   
+   ```bash
+   brew install tesseract poppler
+   ```
+   
+   ### Linux
+   
+   For Ubuntu or Debian systems, you can install Tesseract and Poppler using `apt-get` with the following command:
+   
+   ```bash
+   sudo apt-get install tesseract-ocr poppler-utils
+   ```
+
+
    Go back to the root folder and install the required Python packages:
    ```bash
    cd ..
    pip install -r requirements.txt
    ```
 
-3. **Download and Set Up Ollama (for Local Use)**
+4. **Download and Set Up Ollama (for Local Use)**
    If you want to run LegalInsight with local LLM models, download and install [Ollama](https://ollama.com/download).
 
-4. **Create a `.env` File**
+5. **Create a `.env` File**
    Create a `.env` file in the root directory and add your Together API key:
    ```
    TOGETHER_API_KEY=your_together_api_key_here
    ```
    This key is necessary for using external APIs to retrieve additional information or for document analysis.
 
-5. **Run the Streamlit Application Locally**
+6. **Run the Streamlit Application Locally**
    Run the application locally by executing:
    ```bash
    cd local_code
