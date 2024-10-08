@@ -40,7 +40,7 @@ LegalInsight now supports running processes locally to maintain privacy. Users c
    Clone the LegalInsight repository to your local machine:
    ```bash
    git clone https://github.com/KeshavG69/LegalInsight.git
-   cd LegalInsight/local_code
+   cd LegalInsight
    ```
 
    **Activate virtual environment:**
@@ -78,7 +78,7 @@ LegalInsight now supports running processes locally to maintain privacy. Users c
 
    Go back to the root folder and install the required Python packages:
    ```bash
-   cd ..
+   
    pip install -r requirements.txt
    ```
 
@@ -86,7 +86,7 @@ LegalInsight now supports running processes locally to maintain privacy. Users c
    If you want to run LegalInsight with local LLM models, download and install [Ollama](https://ollama.com/download).
 
 5. **Create a `.env` File**
-   Create a `.env` file in the root directory and add your Together API key:
+   Create a `.env` file in the `local_code` directory and add your Together API key:
    ```
    TOGETHER_API_KEY=your_together_api_key_here
    ```
