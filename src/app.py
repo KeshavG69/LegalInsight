@@ -21,7 +21,7 @@ if uploaded_file is not None:
     with tabs[0]:  # Document Summary tab
         if "summary_text" not in st.session_state:
             st.session_state.summary_text = st.write_stream(
-                get_summary(document_text, llm)
+                get_summary(document_text)
             )
         else:
             st.write(st.session_state.summary_text)
@@ -35,7 +35,7 @@ if uploaded_file is not None:
     with tabs[1]:  # Previous Similar Judgments tab
         if "judgment_text" not in st.session_state:
             st.session_state.judgment_text = ""
-            link = get_link(document_text, local_llm_json)
+            link = get_link(document_text)
             print(link)
             indian_kanoon_text = scrape_jina_ai(link)
     
@@ -54,7 +54,7 @@ if uploaded_file is not None:
                 st.session_state.judgment_text += f'### Doc Link: {q.replace("https://r.jina.ai/", "")}'
     
                 st.session_state.judgment_text += st.write_stream(
-                    get_similar_cases_summary(q, llm)
+                    get_similar_cases_summary(q)
                 )
     
                 st.write("------------------------------------------------------------------")
@@ -76,7 +76,7 @@ if uploaded_file is not None:
     with tabs[2]:  # Strategy tab
         if "strategy_text" not in st.session_state:
             st.session_state.strategy_text = st.write_stream(
-                strategy(document_text, llm)
+                strategy(document_text)
             )
         else:
             st.write(st.session_state.strategy_text)
