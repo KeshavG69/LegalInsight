@@ -18,77 +18,75 @@ if uploaded_file is not None:
 
     tabs = st.tabs(["Document Summary", "Previous Similar Judgments", "Strategy"])
     
-        with tabs[0]:  # Document Summary tab
-            if "summary_text" not in st.session_state:
-                st.session_state.summary_text = st.write_stream(
-                    get_summary(document_text, llm)
-                )
-            else:
-                st.write(st.session_state.summary_text)
-    
-            st.write("------------------------------------------------------------------")
-            st.download_button(
-                label="Download Summary....",
-                data=st.session_state.summary_text,
-                file_name="summary.txt",
+    with tabs[0]:  # Document Summary tab
+        if "summary_text" not in st.session_state:
+            st.session_state.summary_text = st.write_stream(
+                get_summary(document_text, llm)
             )
+        else:
+            st.write(st.session_state.summary_text)
     
-        with tabs[1]:  # Previous Similar Judgments tab
-            if "judgment_text" not in st.session_state:
-                st.session_state.judgment_text = ""
-                link = get_link(document_text, local_llm_json)
-                print(link)
-                indian_kanoon_text = scrape_jina_ai(link)
+        st.write("------------------------------------------------------------------")
+        st.download_button(
+            label="Download Summary....",
+            data=st.session_state.summary_text,
+            file_name="summary.txt",
+        )
+    with tabs[1]:  # Previous Similar Judgments tab
+        if "judgment_text" not in st.session_state:
+            st.session_state.judgment_text = ""
+            link = get_link(document_text, local_llm_json)
+            print(link)
+            indian_kanoon_text = scrape_jina_ai(link)
     
-                past_judgement_links = past_judgement_link(indian_kanoon_text)
-                past_judgement_heading = get_past_judgement_heading(indian_kanoon_text)
+            past_judgement_links = past_judgement_link(indian_kanoon_text)
+            past_judgement_heading = get_past_judgement_heading(indian_kanoon_text)
     
-                for i, q in enumerate(past_judgement_links):
-                    st.markdown(f"### Past Case Number: {i + 1}")
-                    st.session_state.judgment_text += f"### Past Case Number: {i + 1}"
-                    st.markdown(f"### Case Heading: {past_judgement_heading[i]}")
-                    st.session_state.judgment_text += (
-                        f"### Case Heading: {past_judgement_heading[i]}"
-                    )
+            for i, q in enumerate(past_judgement_links):
+                st.markdown(f"### Past Case Number: {i + 1}")
+                st.session_state.judgment_text += f"### Past Case Number: {i + 1}"
+                st.markdown(f"### Case Heading: {past_judgement_heading[i]}")
+                st.session_state.judgment_text += (
+                    f"### Case Heading: {past_judgement_heading[i]}"
+                )
     
-                    st.markdown(f'### Doc Link: {q.replace("https://r.jina.ai/", "")}')
-                    st.session_state.judgment_text += f'### Doc Link: {q.replace("https://r.jina.ai/", "")}'
+                st.markdown(f'### Doc Link: {q.replace("https://r.jina.ai/", "")}')
+                st.session_state.judgment_text += f'### Doc Link: {q.replace("https://r.jina.ai/", "")}'
     
-                    st.session_state.judgment_text += st.write_stream(
-                        get_similar_cases_summary(q, llm)
-                    )
+                st.session_state.judgment_text += st.write_stream(
+                    get_similar_cases_summary(q, llm)
+                )
     
-                    st.write("------------------------------------------------------------------")
-                    st.session_state.judgment_text += (
-                        "------------------------------------------------------------------"
-                    )
-    
-                    st.session_state.judgment_text += "\n\n\n"
-    
-            else:
-                st.write(st.session_state.judgment_text)
                 st.write("------------------------------------------------------------------")
-    
-            st.download_button(
-                label="Download Previous Judgements....",
-                data="".join([str(element) for element in st.session_state.judgment_text]),
-                file_name="previous_judgement.txt",
-            )
-    
-        with tabs[2]:  # Strategy tab
-            if "strategy_text" not in st.session_state:
-                st.session_state.strategy_text = st.write_stream(
-                    strategy(document_text, llm)
+                st.session_state.judgment_text += (
+                    "------------------------------------------------------------------"
                 )
-            else:
-                st.write(st.session_state.strategy_text)
     
+                st.session_state.judgment_text += "\n\n\n"
+    
+        else:
+            st.write(st.session_state.judgment_text)
             st.write("------------------------------------------------------------------")
-            st.download_button(
-                label="Download Strategy....",
-                data=st.session_state.strategy_text,
-                file_name="strategy.txt",
+    
+        st.download_button(
+            label="Download Previous Judgements....",
+            data="".join([str(element) for element in st.session_state.judgment_text]),
+            file_name="previous_judgement.txt",
+        )
+    with tabs[2]:  # Strategy tab
+        if "strategy_text" not in st.session_state:
+            st.session_state.strategy_text = st.write_stream(
+                strategy(document_text, llm)
             )
+        else:
+            st.write(st.session_state.strategy_text)
+    
+        st.write("------------------------------------------------------------------")
+        st.download_button(
+            label="Download Strategy....",
+            data=st.session_state.strategy_text,
+            file_name="strategy.txt",
+        )
 
     st.header("Chat with PDF")
     index_name = (
