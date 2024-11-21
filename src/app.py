@@ -97,7 +97,7 @@ if uploaded_file is not None:
 
     if index_name:
         with st.spinner(f"Opening New Project {index_name}"):
-            retriever = raptor_retriever(document_text, index_name)
+            retriever = raptor_retriever_pinecone(document_text, index_name)
         if "messages" not in st.session_state:
             st.session_state.messages = []
         for message in st.session_state.messages:
