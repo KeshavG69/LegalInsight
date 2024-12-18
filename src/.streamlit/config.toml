@@ -1,0 +1,6 @@
+[theme]
+primaryColor = "#003366"       # Navy Blue
+backgroundColor = "#F8F9FA"    # Light Gray
+secondaryBackgroundColor = "#E9ECEF" # Slightly darker gray for sections
+textColor = "#212529"          # Dark Gray for readability
+font = "sans serif"            # Modern, clean font style
